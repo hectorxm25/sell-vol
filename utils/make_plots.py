@@ -25,6 +25,11 @@ Available Plots
                        against a naive equal-weighted portfolio. Demonstrates
                        that the optimizer successfully constrains tail risk.
 
+    4. --equity-curve  Cumulative Log-Return Equity Curve (Empirical Results)
+                       Full-period equity curve comparing the CVaR-optimized
+                       portfolio against two baselines (equal-weight k=5 and
+                       unconstrained N=25).
+
 ==============================================================================
 Usage
 ==============================================================================
@@ -36,6 +41,7 @@ Usage
     python utils/make_plots.py --fat-tail
     python utils/make_plots.py --complexity
     python utils/make_plots.py --stress-test
+    python utils/make_plots.py --equity-curve
 """
 
 import argparse
@@ -401,6 +407,68 @@ def plot_stress_test() -> str:
 
 
 # ===========================================================================
+# Plot 4: Cumulative Log-Return Equity Curve
+# ===========================================================================
+
+def plot_equity_curve() -> str:
+    """
+    Plot the cumulative log-return equity curve for the CVaR-optimized portfolio
+    against two baselines over the full backtest period.
+
+    Requires that utils/backtest.py has been run first (or runs it automatically
+    if backtest.csv does not exist).
+
+    Returns
+    -------
+    str
+        Path to the saved figure.
+    """
+    print("[Plot 4] Generating cumulative log-return equity curve...")
+
+    backtest_path = os.path.join(_EXPERIMENTS_DIR, "backtest.csv")
+
+    if not os.path.exists(backtest_path):
+        print("    backtest.csv not found, running backtest.py...")
+        from backtest import run_backtest
+        run_backtest()
+
+    df = pd.read_csv(backtest_path, parse_dates=["Date"], index_col="Date")
+
+    dates = df.index
+    opt_cum = df["optimized_cum_logret"].values * 100
+    ew5_cum = df["equal_weight_k5_cum_logret"].values * 100
+    unc_cum = df["unconstrained_n25_cum_logret"].values * 100
+
+    # Create figure — clean, minimal design
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+
+    ax.plot(dates, opt_cum, color="#1B5E20", linewidth=2.0,
+            label="CVaR-Optimized (k=5)")
+    ax.plot(dates, ew5_cum, color="#B71C1C", linewidth=1.6,
+            linestyle="--", label="Equal-Weight (k=5)")
+    ax.plot(dates, unc_cum, color="#4A148C", linewidth=1.6,
+            linestyle=":", label="Unconstrained (N=25)")
+
+    ax.axhline(0, color="gray", linewidth=0.6, linestyle="-", alpha=0.4)
+
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Cumulative Log-Return (%)")
+    ax.set_title("Equity Curve: CVaR-Optimized vs. Baseline Portfolios")
+    ax.legend(loc="upper left", framealpha=0.9)
+
+    fig.autofmt_xdate(rotation=30)
+    plt.tight_layout()
+
+    _ensure_viz_dir()
+    out_path = os.path.join(_VIZ_DIR, "equity_curve.png")
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+
+    print(f"    Saved -> {os.path.abspath(out_path)}")
+    return out_path
+
+
+# ===========================================================================
 # CLI Entry Point
 # ===========================================================================
 
@@ -427,10 +495,15 @@ def main() -> None:
         "--stress-test", action="store_true", dest="stress_test",
         help="Plot 3: Tail event stress test (optimized vs naive).",
     )
+    parser.add_argument(
+        "--equity-curve", action="store_true", dest="equity_curve",
+        help="Plot 4: Cumulative log-return equity curve.",
+    )
 
     args = parser.parse_args()
 
-    if not any([args.all, args.fat_tail, args.complexity, args.stress_test]):
+    if not any([args.all, args.fat_tail, args.complexity, args.stress_test,
+                args.equity_curve]):
         parser.print_help()
         sys.exit(1)
 
@@ -442,6 +515,9 @@ def main() -> None:
 
     if args.all or args.stress_test:
         plot_stress_test()
+
+    if args.all or args.equity_curve:
+        plot_equity_curve()
 
 
 if __name__ == "__main__":
