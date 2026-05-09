@@ -1,0 +1,36 @@
+{
+  "status": "optimal",
+  "objective_value": 0.00018274674355936134,
+  "solve_time_sec": 0.3912324905395508,
+  "parameters": {
+    "N": 20,
+    "k": 10,
+    "S": 1232,
+    "alpha": 0.95,
+    "gamma": 0.005,
+    "solver": "GLPK_MI"
+  },
+  "selected_assets": [
+    "GLD",
+    "SLV",
+    "USO",
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "TSLA",
+    "ARKK",
+    "COIN",
+    "XLE"
+  ],
+  "weights": {
+    "SLV": 0.020780163766834694,
+    "USO": 0.20206074810414656,
+    "NVDA": 0.25651574220646906,
+    "TSLA": 0.21294270347875074,
+    "ARKK": 0.1641955675630751,
+    "COIN": 0.14350507488072403
+  },
+  "portfolio_mu": 0.00018274674355936134,
+  "portfolio_cvar": 0.005000000000000001,
+  "var_estimate": 0.002310905913207
+}

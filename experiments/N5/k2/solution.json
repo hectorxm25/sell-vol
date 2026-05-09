@@ -1,0 +1,23 @@
+{
+  "status": "optimal",
+  "objective_value": 3.0318150786991007e-05,
+  "solve_time_sec": 0.06815314292907715,
+  "parameters": {
+    "N": 5,
+    "k": 2,
+    "S": 1232,
+    "alpha": 0.95,
+    "gamma": 0.005,
+    "solver": "GLPK_MI"
+  },
+  "selected_assets": [
+    "SPY",
+    "IWM"
+  ],
+  "weights": {
+    "IWM": 1.0
+  },
+  "portfolio_mu": 3.0318150786991007e-05,
+  "portfolio_cvar": 0.005,
+  "var_estimate": 0.004981792557726741
+}

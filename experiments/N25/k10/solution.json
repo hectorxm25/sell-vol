@@ -1,0 +1,37 @@
+{
+  "status": "optimal",
+  "objective_value": 0.00018420973076885768,
+  "solve_time_sec": 1920.5727434158325,
+  "parameters": {
+    "N": 25,
+    "k": 10,
+    "S": 1232,
+    "alpha": 0.95,
+    "gamma": 0.005,
+    "solver": "GLPK_MI"
+  },
+  "selected_assets": [
+    "LQD",
+    "SLV",
+    "USO",
+    "AAPL",
+    "NVDA",
+    "TSLA",
+    "ARKK",
+    "COIN",
+    "WMT",
+    "AMD"
+  ],
+  "weights": {
+    "SLV": 0.020160904997838073,
+    "USO": 0.207714509198551,
+    "NVDA": 0.23260411938646608,
+    "TSLA": 0.2121374263612052,
+    "ARKK": 0.13087008202540157,
+    "COIN": 0.1484297600655162,
+    "AMD": 0.04808319796502207
+  },
+  "portfolio_mu": 0.00018420973076885768,
+  "portfolio_cvar": 0.005,
+  "var_estimate": 0.0023565800938991697
+}

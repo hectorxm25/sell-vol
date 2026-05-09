@@ -1,0 +1,23 @@
+{
+  "status": "optimal",
+  "objective_value": 7.497899888213055e-05,
+  "solve_time_sec": 0.025814056396484375,
+  "parameters": {
+    "N": 10,
+    "k": 2,
+    "S": 1232,
+    "alpha": 0.95,
+    "gamma": 0.005,
+    "solver": "GLPK_MI"
+  },
+  "selected_assets": [
+    "SLV",
+    "MSFT"
+  ],
+  "weights": {
+    "SLV": 1.0
+  },
+  "portfolio_mu": 7.497899888213055e-05,
+  "portfolio_cvar": 0.004999999999999999,
+  "var_estimate": 0.0024670804463439336
+}

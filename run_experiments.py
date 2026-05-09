@@ -71,7 +71,7 @@ from solver import (
 N_VALUES: list[int] = [5, 10, 15, 20, 25]
 
 # Portfolio cardinalities to sweep (exact number of assets in portfolio)
-K_VALUES: list[int] = [2, 3, 5, 7, 10]
+K_VALUES: list[int] = [2, 3, 5, 7, 10, 12]
 
 # ---------------------------------------------------------------------------
 # Path Configuration

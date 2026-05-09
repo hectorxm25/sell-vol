@@ -1,0 +1,24 @@
+{
+  "status": "optimal",
+  "objective_value": 0.00015575158153686292,
+  "solve_time_sec": 1.5353233814239502,
+  "parameters": {
+    "N": 25,
+    "k": 2,
+    "S": 1232,
+    "alpha": 0.95,
+    "gamma": 0.005,
+    "solver": "GLPK_MI"
+  },
+  "selected_assets": [
+    "TSLA",
+    "ARKK"
+  ],
+  "weights": {
+    "TSLA": 0.33802806229531657,
+    "ARKK": 0.6619719377046832
+  },
+  "portfolio_mu": 0.00015575158153686292,
+  "portfolio_cvar": 0.0049999999999999975,
+  "var_estimate": 0.0024541239937565674
+}
